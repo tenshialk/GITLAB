@@ -22,6 +22,6 @@ def contatos():
 def principal():
     return render_template('principal.html')
 
-@app.route('/abrir-chamado')
-def abrir_chamado():
+@app.route('/abrirchamado')
+def abrirchamado():
     return render_template('abrir chamados.html')
