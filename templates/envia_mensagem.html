@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Portal de Reclamações - IFRN</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Porta de Reclamações - IFRN</h1>
+    <form action="/enviar-mensagem" method="post">
+      <label for="matricula">Matrícula</label>
+      <input type="text" id="matricula" name="matricula" required>
+
+      <label for="anexo">Anexo</label>
+      <input type="text" id="anexo" name="anexo">
+
+      <label for="mensagem">Escreva Sua Mensagem Abaixo</label>
+      <textarea id="mensagem" name="mensagem" required></textarea>
+
+      <button type="submit" class="btn-enviar">Enviar Mensagem</button>
+    </form>
+  </div>
+</body>
+</html>

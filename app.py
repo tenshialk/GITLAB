@@ -17,3 +17,11 @@ def sobre():
 @app.route('/contatos')
 def contatos():
     return render_template('contatos.html')
+
+@app.route('/principal')
+def principal():
+    return render_template('principal.html')
+
+@app.route('/abrir-chamado')
+def abrir_chamado():
+    return render_template('abrir chamados.html')

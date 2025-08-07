@@ -2,15 +2,14 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
-  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="login-container">
     <h2>Login</h2>
     <form action="/login" method="post">
-      <label for="text">Matricula</label>
+      <label for="text">Matrícula</label>
       <input type="text" id="Matricula" name="Matricula" required />
 
       <label for="senha">Senha</label>
@@ -18,7 +17,10 @@
 
       <button type="submit">Entrar</button>
     </form>
-    <p class="signup-link">Não tem conta? <a href="#">Cadastre-se</a></p>
+
+    <p class="signup-link">
+      Esqueceu ou deseja alterar sua senha? <a href="recuperar.html">Clique aqui</a>
+    </p>
   </div>
 </body>
 </html>
