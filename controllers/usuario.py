@@ -7,32 +7,32 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 bp_usuarios = Blueprint("usuarios", __name__, template_folder='templates')
 
-@bp_usuarios.route('/usuario_create', methods=['GET', 'POST'])
-def usuario_create():
+@bp_usuarios.route('/create', methods=['GET', 'POST'])
+def create():
     if request.method == 'GET':
-        return render_template('usuario_create.html')
+        return render_template('Cadastro.html')
+    
     if request.method == 'POST':
         matricula = request.form.get('matricula')
+        email = request.form.get('matricula')
         senha = request.form.get('senha')
-        if not matricula or not senha:
-            flash('Preencha todos os campos.')
-            return redirect(url_for('usuarios.login'))
+        senha_criptografada = generate_password_hash(senha)
 
-        usuario = Usuario.query.filter_by(matricula=matricula).first()
+        if len(senha) < 3:
+            flash('A senha precisa de pelo menos 3 caracteres.')
+            return redirect(url_for('usuarios.create'))
 
-        if not usuario:
-            flash('Matrícula não encontrada.')
-            return redirect(url_for('usuarios.login'))
+        if Usuario.query.filter_by(email=email).first():
+            flash('matricula já cadastrado!')
+            return redirect(url_for('usuarios.create'))
 
-        if not check_password_hash(usuario.senha, senha):
-            flash('Senha incorreta.')
-            return redirect(url_for('usuarios.login'))
+        if Usuario.query.filter_by(matricula=matricula).first():
+            flash('Matrícula já cadastrada!')
+            return redirect(url_for('usuarios.create'))
 
-        # Sucesso no login (pode usar session, Flask-Login, etc.)
-        session['usuario_id'] = usuario.id
-        flash(f'Bem-vindo(a), {usuario.nome}!')
-        return redirect(url_for('principal'))  # Altere para a página pós-login
+        usuario = Usuario(matricula=matricula, senha=senha_criptografada)
+        db.session.add(usuario)
+        db.session.commit()
 
-        
-
-
+        login_user(usuario)
+        return redirect(url_for('principal'))
