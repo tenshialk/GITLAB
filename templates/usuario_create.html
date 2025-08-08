@@ -8,6 +8,7 @@
 <body>
   <div class="login-container">
     <h2>Login</h2>
+      <form class="login-form" action="{{ url_for('usuarios.autenticar') }}" method="POST"></form>
       <label for="text">Matrícula</label>
       <input type="text" id="Matricula" name="Matricula" required />
 
@@ -20,6 +21,7 @@
     <p class="signup-link">
       Esqueceu ou deseja alterar sua senha? <a href="recuperar.html">Clique aqui</a>
     </p>
+      Não tem uma conta? <a href="{{ url_for('usuarios.create') }}">Cadastre-se</a>
   </div>
 </body>
 </html>
